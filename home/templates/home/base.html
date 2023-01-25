@@ -6,11 +6,19 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Homepage</title>
+    <title>Test</title>
     <link rel="stylesheet" href="{% static 'home/style.css' %}">
 </head>
 <body>
 <div>
+    <div>
+        <ul>
+            <li><a href="{% url 'home:home' %}">Home</a></li>
+            <li><a href="">Blog</a></li>
+            <li><a href="{% url 'members:member' %}">Member</a></li>
+            <li><a href="{% url 'contact:contact' %}">Contact</a></li>
+        </ul>
+    </div>
     <img src="{% static 'example.jpg' %}" alt="My image">
     {% block content %}
     {% endblock %}
