@@ -1,3 +1,11 @@
-body{
+body {
     color: red;
+}
+
+.form-contact {
+    display: inline-grid;
+}
+
+.form-contact input, textarea {
+    margin-bottom: 10px;
 }
