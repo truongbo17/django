@@ -1,6 +1,6 @@
 {% extends 'home/base.html' %}
 {% block content %}
-    <form class="form-contact" action="{% url 'contact:getContact' %}" method="POST">
+    <form class="form-contact" action="{% url 'contact:contact' %}" method="POST">
         {% csrf_token %}
         {{ contact_form }}
         <button>Submit</button>

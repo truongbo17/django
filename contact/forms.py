@@ -1,8 +1,7 @@
 from django import forms
-from .models import ContactFormModel
 
 
-class userFromContact(forms.ModelForm):
-    class Meta:
-        model = ContactFormModel
-        fields = ['user_name', 'email', 'body']
+class contactForm(forms.Form):
+    user_name = forms.CharField(max_length=120)
+    email = forms.EmailField()
+    body = forms.CharField(widget=forms.Textarea)

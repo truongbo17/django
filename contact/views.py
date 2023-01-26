@@ -1,19 +1,29 @@
 from django.shortcuts import render
-from .forms import userFromContact
 from django.http import HttpResponse
+from .forms import contactForm
+from .models import ContactFormModel
+from django.views import View
 
 
 # Create your views here.
-def index(request):
-    contact_form = userFromContact
-    return render(request, 'contact/index.html', {'contact_form': contact_form})
+class Contact(View):
 
+    @staticmethod
+    def get(request):
+        contact_form = contactForm
+        return render(request, 'contact/index.html', {'contact_form': contact_form})
 
-def getContact(request):
-    if request.method == "POST":
-        contact_form = userFromContact(request.POST)
-        if contact_form.is_valid():
-            contact_form.save()
-            return HttpResponse("Success send contact")
-    else:
-        return HttpResponse("Fail send contact")
+    @staticmethod
+    def post(request):
+        if request.method == "POST":
+            contact_form = contactForm(request.POST)
+            if contact_form.is_valid():
+                saveContactModel = ContactFormModel(
+                    user_name=contact_form.cleaned_data['user_name'],
+                    email=contact_form.cleaned_data['email'],
+                    body=contact_form.cleaned_data['body'],
+                )
+                saveContactModel.save()
+                return HttpResponse("Save success")
+        else:
+            return HttpResponse("Save fail")
