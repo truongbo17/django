@@ -4,8 +4,25 @@
     {% for item in post_form %}
         <div class="list-post">
             <img src="{% if item.image %}{{ item.image.url }}{% else %}#{% endif %}" alt="">
-            <p><a href="{% url 'members:detail' item.id %}">{{ item.title }}</a></p>
+            <p><a href="{% url 'members:detail' item.id %}">{{ item.title|upper }}</a></p>
         </div>
     {% endfor %}
 
+    <div class="pagination">
+    <span class="step-links">
+        {% if post_form.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ post_form.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ post_form.number }} of {{ post_form.paginator.num_pages }}.
+        </span>
+
+        {% if post_form.has_next %}
+            <a href="?page={{ post_form.next_page_number }}">next</a>
+            <a href="?page={{ post_form.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
 {% endblock %}
