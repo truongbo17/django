@@ -1,0 +1,8 @@
+{% extends 'home/base.html' %}
+{% block content %}
+    <form action="{% url 'home:saveFile' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ upload_form.as_p }}
+        <button>Submit</button>
+    </form>
+{% endblock %}
