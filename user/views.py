@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -63,3 +64,11 @@ def logoutUser(request):
 @login_required(login_url='/user/login')
 def privatePage(request):
     return render(request, "user/private.html")
+
+
+class PrivatePage(LoginRequiredMixin, View):
+    login_url = '/user/login'
+
+    @staticmethod
+    def get(request):
+        return render(request, "user/private.html")
