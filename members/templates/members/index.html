@@ -2,7 +2,10 @@
 {% block content %}
     <h1>This is member page</h1>
     {% for item in post_form %}
-        <p><a href="{% url 'members:detail' item.id %}">{{ item.title }}</a></p>
+        <div class="list-post">
+            <img src="{% if item.image %}{{ item.image.url }}{% else %}#{% endif %}" alt="">
+            <p><a href="{% url 'members:detail' item.id %}">{{ item.title }}</a></p>
+        </div>
     {% endfor %}
 
 {% endblock %}

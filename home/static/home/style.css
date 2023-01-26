@@ -9,3 +9,14 @@ body {
 .form-contact input, textarea {
     margin-bottom: 10px;
 }
+
+div.list-post {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+div.list-post img{
+    width: 100px;
+    border: 1px solid black;
+    margin-right: 20px;
+}
