@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import registerForm, loginForm
 from django.views import View
 from django.contrib.auth.models import User
@@ -49,7 +49,7 @@ class Login(View):
                 )
                 if user is not None:
                     login(request, user)
-                    return render(request, "user/private.html")
+                    return redirect('user:privatePage')
                 else:
                     return HttpResponse("Password or username in valid")
         else:
@@ -58,7 +58,7 @@ class Login(View):
 
 def logoutUser(request):
     logout(request)
-    return HttpResponse("Logout success")
+    return redirect('user:login')
 
 
 @login_required(login_url='/user/login')
