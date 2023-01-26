@@ -1,6 +1,6 @@
 {% extends 'home/base.html' %}
 {% block content %}
     <h1>Private page (Logged)</h1>
-    <a href="">Logout</a>
+    <a href="{% url 'user:logout' %}">Logout</a>
 
 {% endblock %}

@@ -2,8 +2,9 @@ from django.shortcuts import render
 from .forms import registerForm, loginForm
 from django.views import View
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -52,3 +53,13 @@ class Login(View):
                     return HttpResponse("Password or username in valid")
         else:
             return HttpResponse("Login user fail")
+
+
+def logoutUser(request):
+    logout(request)
+    return HttpResponse("Logout success")
+
+
+@login_required(login_url='/user/login')
+def privatePage(request):
+    return render(request, "user/private.html")
