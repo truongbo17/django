@@ -11,6 +11,10 @@ class Upload(models.Model):
         return self.title
 
 
+class UploadMultiple(models.Model):
+    images = models.FileField()
+
+
 class Category(models.Model):
     name = models.CharField(max_length=120)
     parent_id = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)

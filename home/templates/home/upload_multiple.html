@@ -1,0 +1,8 @@
+{% extends 'home/base.html' %}
+{% block content %}
+    <form action="{% url 'home:uploadMultiple' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ multiple_file.as_p }}
+        <button>Submit</button>
+    </form>
+{% endblock %}
