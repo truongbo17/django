@@ -9,3 +9,12 @@ class Upload(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=120)
+    parent_id = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "%s, %s" % (self.parent_id, self.name)

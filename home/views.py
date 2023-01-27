@@ -2,11 +2,13 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Upload
 from .forms import UploadFileForm
+from .models import Category
 
 
 # Create your views here.
 def index(request):
-    return render(request, 'home/index.html')
+    list_category = Category.objects.all()
+    return render(request, 'home/index.html', {'list_category': list_category})
 
 
 def upload(request):
