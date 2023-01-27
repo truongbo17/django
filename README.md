@@ -1,0 +1,1 @@
+### Python Django 4.1 with AdminLTE template
